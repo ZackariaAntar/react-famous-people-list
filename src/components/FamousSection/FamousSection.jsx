@@ -18,7 +18,7 @@ function FamousSection() {
       console.log(response.data);
       setPeopleArray(response.data)
     }).catch((err) => {console.log(err)})
-    
+
   }
 
   const addPerson = (evt) => {
@@ -45,6 +45,12 @@ function FamousSection() {
           {famousPersonName} is famous for "{famousPersonRole}".
         </p>
         <ul>
+          {famousPeopleArray.map((person) => {
+            return(
+              <li key={person.id}> {person.name} is famous for "{person.role}"</li>
+            )
+
+          })}
           {/* TODO: Render the list of famous people */}
         </ul>
       </section>
