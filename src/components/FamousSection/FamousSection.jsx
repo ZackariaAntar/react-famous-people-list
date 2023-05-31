@@ -24,6 +24,13 @@ function FamousSection() {
   const addPerson = (evt) => {
     evt.preventDefault();
     console.log(`The person is ${famousPersonName} and they're famous for ${famousPersonRole}`);
+    axios.post('/people', {name:famousPersonName , role: famousPersonRole})
+    .then((response) => {
+      fetchPeople()
+      setPersonName('')
+      setPersonRole('')
+
+    } )
 
     // TODO: create POST request to add this new person to the database
 
@@ -33,28 +40,33 @@ function FamousSection() {
   }
 
     return (
-      <section className="new-person-section">
-        <form onSubmit={addPerson}>
-          <label htmlFor="name-input">Name:</label>
-          <input id="name-input" onChange={e => setPersonName(e.target.value)} />
-          <label htmlFor="role-input">Famous for:</label>
-          <input id="role-input" onChange={e => setPersonRole(e.target.value)} />
-          <button type="submit">Done</button>
-        </form>
-        <p>
-          {famousPersonName} is famous for "{famousPersonRole}".
-        </p>
-        <ul>
-          {famousPeopleArray.map((person) => {
-            return(
-              <li key={person.id}> {person.name} is famous for "{person.role}"</li>
-            )
-
-          })}
-          {/* TODO: Render the list of famous people */}
-        </ul>
-      </section>
-    );
+		<section className="new-person-section">
+			<form onSubmit={addPerson}>
+				<label htmlFor="name-input">Name:</label>
+				<input
+					value={famousPersonName}
+					id="name-input"
+					onChange={(e) => setPersonName(e.target.value)}
+				/>
+				<label htmlFor="role-input">Famous for:</label>
+				<input
+					value={famousPersonRole}
+					id="role-input"
+					onChange={(e) => setPersonRole(e.target.value)}
+				/>
+				<button type="submit">Done</button>
+			</form>
+			<ul>
+				{famousPeopleArray.map((person) => {
+					return (
+						<li key={person.id}>
+							{person.name} is famous for "{person.role}"
+						</li>
+					);
+				})}
+			</ul>
+		</section>
+	);
 }
 
 export default FamousSection;
