@@ -33,11 +33,6 @@ function FamousSection() {
 				render={fetchPeople}
 			/>
 			<FamousPersonList array={famousPeopleArray} />
-			<FamousPerson
-				array={famousPeopleArray}
-				// change={setPeopleArray}
-				// render={fetchPeople}
-			/>
 		</section>
 	);
 }

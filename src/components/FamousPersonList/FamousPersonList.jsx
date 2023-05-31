@@ -6,13 +6,12 @@ function FamousPersonList(props) {
 
     return (
 		<>
-        <FamousPerson />
 			<ul>
 				{famousPeopleArray.map((person) => {
 					return (
-						<li key={person.id}>
-							{person.name} is famous for "{person.role}"
-						</li>
+						<ul>
+							<FamousPerson key={person.id} person={person} />
+						</ul>
 					);
 				})}
 			</ul>
