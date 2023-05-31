@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './FamousSection.css';
+import axios from "axios";
 
 function FamousSection() {
   let [famousPersonName, setPersonName] = useState('');
@@ -7,20 +8,28 @@ function FamousSection() {
   let [famousPeopleArray, setPeopleArray] = useState([]);
 
   // TODO: on load, call the fetchPeople() function
+  useEffect(() => {
+    fetchPeople()
+  }, [])
 
   const fetchPeople = () => {
     // TODO: fetch the list of people from the server
+    axios.get(('/people')).then((response) => {
+      console.log(response.data);
+      setPeopleArray(response.data)
+    }).catch((err) => {console.log(err)})
+    
   }
 
   const addPerson = (evt) => {
     evt.preventDefault();
     console.log(`The person is ${famousPersonName} and they're famous for ${famousPersonRole}`);
-    
+
     // TODO: create POST request to add this new person to the database
 
-    // HINT: the server is expecting a person object 
+    // HINT: the server is expecting a person object
     //       with a `name` and a `role` property
-  
+
   }
 
     return (
